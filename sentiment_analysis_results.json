@@ -1,0 +1,247 @@
+{
+    "Tao Te Ching": {
+        "polarity": 0.14064621205612643,
+        "subjectivity": 0.5063884963058737,
+        "sentiment": "Sentiment(polarity=0.14064621205612643, subjectivity=0.5063884963058737)",
+        "word_count": 2897,
+        "average_words_per_sentence": 3.09,
+        "word_freq": [
+            [
+                "things",
+                58
+            ],
+            [
+                "work",
+                50
+            ],
+            [
+                "people",
+                35
+            ],
+            [
+                "state",
+                34
+            ],
+            [
+                "heaven",
+                33
+            ],
+            [
+                "sage",
+                31
+            ],
+            [
+                "works",
+                30
+            ],
+            [
+                "foundation",
+                26
+            ],
+            [
+                "place",
+                22
+            ],
+            [
+                "terms",
+                21
+            ]
+        ]
+    },
+    "Art of War": {
+        "polarity": 0.08119525027735065,
+        "subjectivity": 0.490280849967251,
+        "sentiment": "Sentiment(polarity=0.08119525027735065, subjectivity=0.490280849967251)",
+        "word_count": 12922,
+        "average_words_per_sentence": 3.9,
+        "word_freq": [
+            [
+                "enemy",
+                324
+            ],
+            [
+                "army",
+                208
+            ],
+            [
+                "work",
+                109
+            ],
+            [
+                "ground",
+                106
+            ],
+            [
+                "chang",
+                93
+            ],
+            [
+                "kung",
+                80
+            ],
+            [
+                "time",
+                72
+            ],
+            [
+                "soldiers",
+                72
+            ],
+            [
+                "order",
+                70
+            ],
+            [
+                "victory",
+                65
+            ]
+        ]
+    },
+    "The Analects": {
+        "polarity": 0.12903469773863413,
+        "subjectivity": 0.5354104521906745,
+        "sentiment": "Sentiment(polarity=0.12903469773863413, subjectivity=0.5354104521906745)",
+        "word_count": 6891,
+        "average_words_per_sentence": 2.05,
+        "word_freq": [
+            [
+                "master",
+                519
+            ],
+            [
+                "chap",
+                498
+            ],
+            [
+                "people",
+                98
+            ],
+            [
+                "virtue",
+                94
+            ],
+            [
+                "confucius",
+                74
+            ],
+            [
+                "things",
+                55
+            ],
+            [
+                "government",
+                54
+            ],
+            [
+                "propriety",
+                50
+            ],
+            [
+                "tsze-kung",
+                49
+            ],
+            [
+                "words",
+                47
+            ]
+        ]
+    },
+    "Chuang Tzu Mystic, Moralist, and Social Reformer": {
+        "polarity": 0.10048844104147342,
+        "subjectivity": 0.48293567784205116,
+        "sentiment": "Sentiment(polarity=0.10048844104147342, subjectivity=0.48293567784205116)",
+        "word_count": 25693,
+        "average_words_per_sentence": 3.09,
+        "word_freq": [
+            [
+                "confucius",
+                228
+            ],
+            [
+                "life",
+                221
+            ],
+            [
+                "state",
+                214
+            ],
+            [
+                "things",
+                212
+            ],
+            [
+                "chuang",
+                210
+            ],
+            [
+                "world",
+                193
+            ],
+            [
+                "nothing",
+                193
+            ],
+            [
+                "prince",
+                189
+            ],
+            [
+                "virtue",
+                167
+            ],
+            [
+                "people",
+                163
+            ]
+        ]
+    },
+    "Dream of the Red Chamber:": {
+        "polarity": 0.10777717800266474,
+        "subjectivity": 0.4482343885362082,
+        "sentiment": "Sentiment(polarity=0.10777717800266474, subjectivity=0.4482343885362082)",
+        "word_count": 40718,
+        "average_words_per_sentence": 6.0,
+        "word_freq": [
+            [
+                "chia",
+                1079
+            ],
+            [
+                "pao-y\u00fc",
+                801
+            ],
+            [
+                "feng",
+                470
+            ],
+            [
+                "time",
+                438
+            ],
+            [
+                "lady",
+                399
+            ],
+            [
+                "words",
+                268
+            ],
+            [
+                "tai-y\u00fc",
+                251
+            ],
+            [
+                "mrs.",
+                241
+            ],
+            [
+                "family",
+                238
+            ],
+            [
+                "jung",
+                221
+            ]
+        ]
+    }
+}

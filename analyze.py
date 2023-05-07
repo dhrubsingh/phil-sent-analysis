@@ -1,49 +1,64 @@
-import json
+import streamlit as st
+from textblob import TextBlob
 import requests
 from collections import Counter
+import nltk
 from nltk.corpus import stopwords
-from textblob import TextBlob
-import os
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import json
 
-def perform_sentiment_analysis(text):
+        
+urls = {"Tao Te Ching": "https://www.gutenberg.org/cache/epub/216/pg216.txt" , "Art of War": "https://www.gutenberg.org/cache/epub/132/pg132.txt",
+        "The Analects": "https://www.gutenberg.org/cache/epub/3330/pg3330.txt",  "Chuang Tzu Mystic, Moralist, and Social Reformer": "https://www.gutenberg.org/files/59709/59709-0.txt",
+        "Dream of the Red Chamber:": "https://www.gutenberg.org/cache/epub/9603/pg9603.txt", 
+}
+
+
+# Function to perform sentiment analysis
+def perform_sentiment_analysis(text, nouns_only=False):
     blob = TextBlob(text)
+    if nouns_only:
+        words = [word.lower() for (word, pos) in blob.tags if pos.startswith('NN') and len(word) > 3]
+    else:
+        words = blob.words
     polarity = blob.sentiment.polarity
     subjectivity = blob.sentiment.subjectivity
     sentiment = blob.sentiment
-    return polarity, subjectivity, sentiment, blob
+    return polarity, subjectivity, sentiment, words, blob
 
-def write_sentiment_to_json(title, polarity, subjectivity, sentiment, common_words, output_file):
-    data = {
-        'title': title,
+
+results = {}
+
+for title, url in urls.items():
+
+    response = requests.get(url)
+    tao_teh_king = response.content.decode('utf-8')
+
+    # Perform sentiment analysis on The Tao Teh King
+    polarity, subjectivity, sentiment, words, blob = perform_sentiment_analysis(tao_teh_king, nouns_only=True)
+    word_count = len(words)
+    average_words_per_sentence = round(len(words) / len(TextBlob(tao_teh_king).sentences), 2)
+
+    # Exclude words related to Project Gutenberg
+    exclude_words = ['gutenberg', 'gutenberg-tm', 'project', 'ebook', 'www', 'http', 'org', 'etext', 'edition', 'file', 'files', 'online', 'pg']
+    interesting_words = [word for word in words if word not in exclude_words]
+
+    # Extract most common interesting words
+    common_words = Counter(interesting_words).most_common(10)
+
+    # Create a list of tuples containing the word and its frequency
+    word_freq = [(word, freq) for word, freq in common_words]
+
+    results[title] = {
         'polarity': polarity,
         'subjectivity': subjectivity,
-        'sentiment': sentiment,
-        'common_words': common_words
+        'sentiment': str(sentiment),
+        'word_count': word_count,
+        'average_words_per_sentence':average_words_per_sentence,
+        'word_freq': word_freq
     }
-    if os.path.exists(output_file):
-        with open(output_file, 'r') as f:
-            data_list = json.load(f)
-    else:
-        data_list = []
-    data_list.append(data)
-    with open(output_file, 'w') as f:
-        json.dump(data_list, f, indent=4)
 
-# Prompt user to input book title and output file name
-title = "Ta"
-output_file = input("Enter the output file name: ")
-
-# Download book text from URL and perform sentiment analysis
-url = "https://www.gutenberg.org/cache/epub/216/pg216.txt"
-response = requests.get(url)
-text = response.content.decode('utf-8')
-polarity, subjectivity, sentiment, blob = perform_sentiment_analysis(text)
-
-# Extract most common interesting words and write results to JSON file
-words = blob.words
-stop_words = stopwords.words('english')
-interesting_words = [word.lower() for word in words if word.lower() not in stop_words and len(word) > 3]
-common_words = Counter(interesting_words).most_common(5)
-write_sentiment_to_json(title, polarity, subjectivity, str(sentiment), common_words, output_file)
-
-print("Sentiment analysis results written to", output_file)
+with open('sentiment_analysis_results.json', 'w') as f:
+    json.dump(results, f, indent=4)
