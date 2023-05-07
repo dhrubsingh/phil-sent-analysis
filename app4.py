@@ -10,6 +10,7 @@ import pandas as pd
 import json
 
 
+
 # Define the main page
 def main_page():
     st.title("Coming Soon")
@@ -17,8 +18,8 @@ def main_page():
 
 
 # Define the sentiment analysis page
-def sentiment_analysis_page(book):
-    st.title(book["title"])
+def sentiment_analysis_page(book, book_title):
+    st.title(book_title)
     st.write("Polarity Score: ", book["polarity"])
 
     if book["polarity"] > 0:
@@ -48,7 +49,7 @@ def sentiment_analysis_page(book):
                           fmt=".1f", ax=ax, linewidths=0.5, linecolor='black')
 
     # Set the title and axis labels
-    ax.set_title(f"Most Common Interesting Nouns in {book['title']}", fontsize=16)
+    ax.set_title(f"Most Common Interesting Nouns in {book_title}", fontsize=16)
     ax.set_xlabel("Frequency", fontsize=12)
     ax.set_ylabel("Words", fontsize=12)
 
@@ -64,6 +65,7 @@ with open('sentiment_analysis_results.json', 'r') as f:
 book_titles = list(results.keys())
 book_data = list(results.values())
 
+
 # Set the page title
 st.set_page_config(page_title="Sentiment Analysis")
 
@@ -77,4 +79,5 @@ if choice == "Home":
 else:
     book_index = book_titles.index(choice)
     book = book_data[book_index]
-    sentiment_analysis_page(book)
+    book_title = book_titles[book_index]
+    sentiment_analysis_page(book, book_title)
