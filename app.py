@@ -23,7 +23,7 @@ def methodlogoy():
 
 # Define the main page
 def main_page():
-    st.title("Sentiment Analysis")
+    st.title("Sentiment Analysis Summary")
     st.write("This app displays sentiment analysis results for four classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.")
 
     # Read sentiment analysis results from JSON file
