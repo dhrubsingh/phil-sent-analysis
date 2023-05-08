@@ -8,8 +8,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import json
-
-
+from wordcloud import WordCloud
+import plotly.express as px
 
 # Define the main page
 def main_page():
@@ -43,7 +43,7 @@ def main_page():
     chart1.set_title("Polarity Scores for Classic Chinese Texts", fontsize=16)
     chart1.set_xlabel("Book Titles", fontsize=12)
     chart1.set_ylabel("Polarity Score", fontsize=12)
-    #chart1.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+    chart1.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
 
     st.write("Polarity Scores:")
     st.pyplot(fig1)
@@ -54,11 +54,40 @@ def main_page():
     chart2.set_title("Subjectivity Scores for Classic Chinese Texts", fontsize=16)
     chart2.set_xlabel("Book Titles", fontsize=12)
     chart2.set_ylabel("Subjectivity Score", fontsize=12)
-    #chart2.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+    chart2.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
 
     st.write("Subjectivity Scores:")
     st.pyplot(fig2)
 
+    # Create a heatmap of word frequencies using WordCloud
+    word_freq = Counter()
+    for book_data in results.values():
+        for word, freq in book_data['word_freq']:
+            word_freq[word] += freq
+
+    wc = WordCloud(width=800, height=400, background_color="white").generate_from_frequencies(word_freq)
+
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wc, interpolation='bilinear')
+    plt.axis("off")
+
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    st.write("Word Frequencies:")
+    st.pyplot()
+
+    # Create a bubble chart of word frequencies using Plotly
+    word_freq = Counter()
+    for book_data in results.values():
+        for word, freq in book_data['word_freq']:
+            word_freq[word] += freq
+
+    df_word_freq = pd.DataFrame(list(word_freq.items()), columns=['Word', 'Frequency'])
+    df_word_freq = df_word_freq[df_word_freq['Word'].apply(lambda x: len(x) > 2)]
+    fig3 = px.scatter(df_word_freq, x='Word', y='Frequency', size='Frequency', size_max=50,
+                 hover_data={'Word': True, 'Frequency': True}, title='Word Frequency in Classic Chinese Texts')
+    fig3.update_layout(xaxis={'title': 'Word'}, yaxis={'title': 'Frequency'})
+    st.write("Word Frequencies:")
+    st.plotly_chart(fig3)
 
 
 
