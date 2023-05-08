@@ -53,7 +53,7 @@ def main_page():
     chart1.set_title("Polarity Scores for Classic Chinese Texts", fontsize=16)
     chart1.set_xlabel("Book Titles", fontsize=12)
     chart1.set_ylabel("Polarity Score", fontsize=12)
-    chart1.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+    #chart1.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
 
     st.write("Polarity Scores:")
     st.pyplot(fig1)
@@ -64,7 +64,7 @@ def main_page():
     chart2.set_title("Subjectivity Scores for Classic Chinese Texts", fontsize=16)
     chart2.set_xlabel("Book Titles", fontsize=12)
     chart2.set_ylabel("Subjectivity Score", fontsize=12)
-    chart2.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+    #chart2.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
 
     st.write("Subjectivity Scores:")
     st.pyplot(fig2)
