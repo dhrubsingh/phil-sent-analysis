@@ -1,7 +1,5 @@
 import streamlit as st
-import requests
 from collections import Counter
-import nltk
 from nltk.corpus import stopwords
 import seaborn as sns
 import matplotlib.pyplot as plt
