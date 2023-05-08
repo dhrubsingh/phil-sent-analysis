@@ -11,10 +11,24 @@ import json
 from wordcloud import WordCloud
 import plotly.express as px
 
+
+# Define the methodology page
+
+def methodlogoy():
+    st.title("Methodology")
+    st.write("This is a sentiment analysis project examining several classical Chinese texts, namely the Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.")
+    st.write("In particular, I examine several key metrics for sentiment analysis, namely polarity, subjectivity, sentiment, word count, and word frequencies.")
+    st.write("Firstly, I chose to examine polarity because this is the metric that would help classify whether a text is positive, negative, or neutral. This is important in the context of this exploration as it helps illuminate some insight into each author's perspective and general themese throughout the text.")
+    st.write("Secondly, I chose to examine the subjecitivty of each text because I wanted to take into consideration potentiall biases from the author. It is important to highlight bias in order to effectively contextualize each text in its time period.")
+    st.write("Additionally, it's also important to keep track of sentiment as this helps us idenitfy emotional content of the passage, which can help us understand the philosophical arguments in some of these texts better. Understanding the sentimental context may give us better insight into their philosophical arguments.")
+    st.write("Furthermore, it's also important to keep track of the word count because it provides inisight into the complexity of a text: the longer the word count the more this implies that the texts may contain more nuanced ideas.")
+    st.write("Finally, it's also important to keep track of the word frequencies so that we can see what are the most common themes, ideas, and concepts for each text.")
+    st.write("This entire project was built using Python. I used TextBlob and Natural Language Toolkit to parse through each text and extract the sentiment analysis metrics. I used plotting and data science libarires like Pandas, Seaborn, WordCloud, and Matplotlib to display my results. I used Streamlit to publish my findings. For source code and potential research replication, visit this Github link:")
+
 # Define the main page
 def main_page():
     st.title("Sentiment Analysis")
-    st.write("This app displays sentiment analysis results for classic Chinese texts.")
+    st.write("This app displays sentiment analysis results for four classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.")
 
     # Read sentiment analysis results from JSON file
     with open('sentiment_analysis_results.json', 'r') as f:
@@ -144,12 +158,14 @@ book_data = list(results.values())
 st.set_page_config(page_title="Sentiment Analysis")
 
 # Create a sidebar with a navigation menu
-menu = ["Home"] + book_titles
+menu = ["Home", "Methodology"] + book_titles
 choice = st.sidebar.selectbox("Select a page", menu)
 
 # Display the selected page
 if choice == "Home":
     main_page()
+elif choice == "Methodology":
+    methodlogoy()
 else:
     book_index = book_titles.index(choice)
     book = book_data[book_index]
