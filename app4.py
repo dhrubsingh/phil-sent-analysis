@@ -13,8 +13,53 @@ import json
 
 # Define the main page
 def main_page():
-    st.title("Coming Soon")
-    st.write("This app will display sentiment analysis results for classic Chinese texts.")
+    st.title("Sentiment Analysis")
+    st.write("This app displays sentiment analysis results for classic Chinese texts.")
+
+    # Read sentiment analysis results from JSON file
+    with open('sentiment_analysis_results.json', 'r') as f:
+        results = json.load(f)
+
+    # Define the book titles, polarity scores, and subjectivity scores
+    book_titles = list(results.keys())
+    polarity_scores = [book_data['polarity'] for book_data in results.values()]
+    subjectivity_scores = [book_data['subjectivity'] for book_data in results.values()]
+
+    # Shorten book titles with more than three words
+    short_titles = []
+    for title in book_titles:
+        if len(title.split()) > 3:
+            short_title = ' '.join(title.split()[:3]) + '...'
+        else:
+            short_title = title
+        short_titles.append(short_title)
+
+    # Create a Pandas dataframe from the polarity and subjectivity scores and shortened book titles
+    df = pd.DataFrame({'Book': short_titles, 'Polarity Score': polarity_scores, 'Subjectivity Score': subjectivity_scores})
+
+    # Create a bar chart for polarity scores using Seaborn
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
+    chart1 = sns.barplot(x='Book', y='Polarity Score', data=df, ax=ax1)
+    chart1.set_title("Polarity Scores for Classic Chinese Texts", fontsize=16)
+    chart1.set_xlabel("Book Titles", fontsize=12)
+    chart1.set_ylabel("Polarity Score", fontsize=12)
+    #chart1.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+
+    st.write("Polarity Scores:")
+    st.pyplot(fig1)
+
+    # Create a bar chart for subjectivity scores using Seaborn
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    chart2 = sns.barplot(x='Book', y='Subjectivity Score', data=df, ax=ax2)
+    chart2.set_title("Subjectivity Scores for Classic Chinese Texts", fontsize=16)
+    chart2.set_xlabel("Book Titles", fontsize=12)
+    chart2.set_ylabel("Subjectivity Score", fontsize=12)
+    #chart2.set_ylim(0, 1)  # Set the y-axis limits to 0 and 1
+
+    st.write("Subjectivity Scores:")
+    st.pyplot(fig2)
+
+
 
 
 # Define the sentiment analysis page
