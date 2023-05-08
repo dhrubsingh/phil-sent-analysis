@@ -1,6 +1,5 @@
 import streamlit as st
 from collections import Counter
-from nltk.corpus import stopwords
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
