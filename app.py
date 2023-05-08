@@ -1,5 +1,4 @@
 import streamlit as st
-from textblob import TextBlob
 import requests
 from collections import Counter
 import nltk
