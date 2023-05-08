@@ -195,7 +195,7 @@
             ]
         ]
     },
-    "Dream of the Red Chamber:": {
+    "Dream of the Red Chamber": {
         "polarity": 0.10777717800266474,
         "subjectivity": 0.4482343885362082,
         "sentiment": "Sentiment(polarity=0.10777717800266474, subjectivity=0.4482343885362082)",
