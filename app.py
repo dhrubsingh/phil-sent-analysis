@@ -19,12 +19,12 @@ def methodlogoy():
     st.write("Additionally, it's also important to keep track of sentiment as this helps us idenitfy emotional content of the passage, which can help us understand the philosophical arguments in some of these texts better. Understanding the sentimental context may give us better insight into their philosophical arguments.")
     st.write("Furthermore, it's also important to keep track of the word count because it provides inisight into the complexity of a text: the longer the word count the more this implies that the texts may contain more nuanced ideas.")
     st.write("Finally, it's also important to keep track of the word frequencies so that we can see what are the most common themes, ideas, and concepts for each text.")
-    st.write("This entire project was built using Python. I used TextBlob and Natural Language Toolkit to parse through each text and extract the sentiment analysis metrics. I used plotting and data science libarires like Pandas, Seaborn, WordCloud, and Matplotlib to display my results. I used Streamlit to publish my findings. For source code and potential research replication, visit this Github link:")
+    st.write("This entire project was built using Python. I used TextBlob and Natural Language Toolkit to parse through each text and extract the sentiment analysis metrics. I used plotting and data science libarires like Pandas, Seaborn, WordCloud, and Matplotlib to display my results. I used Streamlit to publish my findings. For source code and potential research replication, visit this Github link: https://github.com/dhrubsingh/phil_sent_analysis")
 
 # Define the main page
 def main_page():
     st.title("Sentiment Analysis Summary")
-    st.write("This app displays sentiment analysis results for four classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.")
+    st.write("This app displays sentiment analysis results for five classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.")
 
     # Read sentiment analysis results from JSON file
     with open('sentiment_analysis_results.json', 'r') as f:
