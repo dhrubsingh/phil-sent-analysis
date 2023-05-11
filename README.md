@@ -1,6 +1,6 @@
 # Sentiment Analysis Project 
 
-This is a sentiment analysis project that I have built examining four classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.
+This is a sentiment analysis project that I have built examining five classic Chinese texts: Tao Te Ching, Art of War, the Analects, Dream of the Red Chamber, and Chuang Tzu Mystic, Moralist, and Social Reformer.
 
 The website is live via this link: https://dhrubsingh-phil-sent-analysis-app-0mw0n9.streamlit.app/
 
